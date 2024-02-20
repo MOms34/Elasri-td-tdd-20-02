@@ -59,6 +59,15 @@ class TestPanier(unittest.TestCase):
     def test_remise_not_less_than_100(self):
         with self.assertRaises(ValueError):
             article = Article("Pomme", 2.5, 10, datetime.now() + timedelta(days=30), 101)
+    def test_prix_apres_remise(self):
+        article = Article("Pomme", 2.5, 10, datetime.now() + timedelta(days=30), 20)
+        self.assertEqual(article.price, 2.5)
+        article.prix_apres_remise()
+        self.assertEqual(article.price, 2.0)
+
+
+
+
 
 if __name__ == '__main__':
     unittest.main()

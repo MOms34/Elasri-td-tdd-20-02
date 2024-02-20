@@ -25,7 +25,9 @@ class Article:
 
     def is_expired(self):
         return datetime.now() > self.expiration_date
-
+    def prix_apres_remise(self):
+        self.price = self.price * (1 - self.remise / 100)
+        return self.price
     def __str__(self):
         return f"{self.name} - Prix: {self.price} € - Quantité: {self.quantity}"
 
