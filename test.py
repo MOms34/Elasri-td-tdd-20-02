@@ -53,6 +53,12 @@ class TestPanier(unittest.TestCase):
         end_date = datetime.now() + timedelta(days=40)
         evolution = self.panier.get_evolution(start_date, end_date)
         self.assertEqual(evolution, {"Pomme": 10, "Banane": 20})
+    def test_remise_not_less_than_zero(self):
+        with self.assertRaises(ValueError):
+            article = Article("Pomme", 2.5, 10, datetime.now() + timedelta(days=30), -10)
+    def test_remise_not_less_than_100(self):
+        with self.assertRaises(ValueError):
+            article = Article("Pomme", 2.5, 10, datetime.now() + timedelta(days=30), 101)
 
 if __name__ == '__main__':
     unittest.main()

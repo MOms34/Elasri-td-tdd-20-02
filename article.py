@@ -1,13 +1,18 @@
 from datetime import datetime, timedelta
 
 class Article:
-    def __init__(self, name, price, quantity, expiration_date):
+    def __init__(self, name, price, quantity, expiration_date, remise=0):
         if price <= 0:
             raise ValueError("Le prix de l'article doit etre supp a 0")
+        if remise < 0:
+            raise ValueError("remise doit etre supp a 0")
+        if remise > 100:
+            raise ValueError("remise doit etre supp a 100")
         self.name = name
         self.price = price
         self.quantity = quantity
         self.expiration_date = expiration_date
+        self.remise = remise
 
     def add_quantity(self, quantity):
         self.quantity += quantity
