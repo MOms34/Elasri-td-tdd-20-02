@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 
 class Article:
     def __init__(self, name, price, quantity, expiration_date):
+        if price <= 0:
+            raise ValueError("Le prix de l'article doit etre supp a 0")
         self.name = name
         self.price = price
         self.quantity = quantity

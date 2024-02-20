@@ -7,6 +7,10 @@ class TestArticle(unittest.TestCase):
         self.expiration_date = datetime.now() + timedelta(days=30)
         self.article = Article("Pomme", 2.5, 10, self.expiration_date)
 
+    def test_price_positive(self):
+        with self.assertRaises(ValueError):
+            article = Article("Pomme", -2.5, 10, datetime.now() + timedelta(days=30))
+
     def test_add_quantity(self):
         self.article.add_quantity(5)
         self.assertEqual(self.article.quantity, 15)
